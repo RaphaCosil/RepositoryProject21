@@ -1,16 +1,20 @@
 package com.example.projectnew21
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.projectnew21.dataClasses.ApiDeck
-import com.example.projectnew21.repository.DeckCardRepositoryImpl
 import com.example.projectnew21.ui.theme.ProjectNew21Theme
+import com.example.projectnew21.databinding.ActivityMain2Binding
+import com.example.projectnew21.databinding.ActivityMainBinding
+import com.example.projectnew21.repository.DeckCardRepositoryImpl
+import com.example.projectnew21.util.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.catch
@@ -19,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
+    private lateinit var binding: ActivityMainBinding
     var deck: ApiDeck?=null
 
     fun newDeck(callback: (String) -> Unit) {
@@ -62,6 +67,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        Log.d("###############","hello")
+        binding.btTeste.setOnClickListener{
+            Tela2()
+        }
         Log.d("###############", "hello world")
         Log.d("###############","Return DeckId1")
         newDeck{
@@ -74,20 +85,8 @@ class MainActivity : ComponentActivity() {
 
     }
 
-
-    @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        ProjectNew21Theme {
-            Greeting("Android")
-        }
+    private fun Tela2() {
+        val tela2 = Intent(this,MainActivity2::class.java)
+        startActivity(tela2)
     }
 }
