@@ -1,5 +1,6 @@
 package com.example.projectnew21.viewModel
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CardViewModel (
-    private val repository: DeckCardRepository): ViewModel(){
+    private val repository: DeckCardRepository, private val baseContext: Context): ViewModel(){
     fun drawCard(deckId:String) {
         GlobalScope.launch {
             DeckCardRepositoryImpl().comprarCarta(deckId)
@@ -30,4 +31,4 @@ class CardViewModel (
         }
     }
     }
-}
+//}
