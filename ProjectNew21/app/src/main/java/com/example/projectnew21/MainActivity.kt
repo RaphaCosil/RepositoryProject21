@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.projectnew21.dataClasses.ApiDeck
-import com.example.projectnew21.ui.theme.ProjectNew21Theme
 import com.example.projectnew21.databinding.ActivityMain2Binding
 import com.example.projectnew21.databinding.ActivityMainBinding
 import com.example.projectnew21.repository.DeckCardRepositoryImpl
