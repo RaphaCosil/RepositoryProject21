@@ -23,21 +23,21 @@ class MainViewModel (private val deckUseCase: DeckUseCase): ViewModel(){
     var deckLiveData= MutableLiveData<ApiDeck>()
     var cardListLiveData= MutableLiveData<ApiCardList>()
 
-    fun newDeck() {
-        deckUseCase.newDeck { deckResponse->
-
-            deckLiveData.value=deckResponse
-        }
-    }
-    fun drawCard(){
-        deckLiveData.value?.let {
-            deckUseCase.drawCard(it){ apiCardList ->
-
-                cardListLiveData.value=apiCardList
-        }
-
-        }
-
-    }
+//    fun newDeck() {
+//        deckUseCase.newDeck { deckResponse->
+//
+//            deckLiveData.value=deckResponse
+//        }
+//    }
+//    fun drawCard(){
+//        deckLiveData.value?.let {
+//            deckUseCase.drawCard(it){ apiCardList ->
+//
+//                cardListLiveData.value=apiCardList
+//        }
+//
+//        }
+//
+//    }
 
 }
