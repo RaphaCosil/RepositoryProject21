@@ -1,6 +1,5 @@
 package com.example.projectnew21.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.projectnew21.dataClasses.ApiCard
@@ -12,44 +11,40 @@ import org.koin.core.component.getScopeId
 class GameViewModel(private val deckUseCase: DeckUseCase): ViewModel() {
     var deckLiveData= MutableLiveData<ApiDeck>()
     var cardListLiveData= MutableLiveData<ApiCardList>()
-    var pontuacao = MutableLiveData<Int>(0)
+    var pontuacao = MutableLiveData<Int>()
+
     fun newDeck() {
         deckUseCase.newDeck { deckResponse->
+
             deckLiveData.value=deckResponse
-            pontuacao.value = 0
         }
     }
     fun drawCard(){
         deckLiveData.value?.let {
             deckUseCase.drawCard(it){ apiCardList ->
+
                 cardListLiveData.value=apiCardList
-                cardListLiveData.value?.let {
-                    calcularPontos(it.cards[0].value)
-                }
+                calcularPontos(apiCardList.cards[0])
             }
+
         }
     }
 
-    fun calcularPontos(card: String){
-        if (card.equals("2") || card.equals("3") || card.equals(
+    fun calcularPontos(card: ApiCard){
+        if (card.value.equals("2") || card.value.equals("3") || card.value.equals(
                 "4"
             )
-            || card.equals("5") || card.equals("6") || card.equals(
+            || card.value.equals("5") || card.value.equals("6") || card.value.equals(
                 "7"
             )
-            || card.equals("8") || card.equals("9")
+            || card.value.equals("8") || card.value.equals("9")
         ) {
-            val parsedInt = card.toInt()
+            val parsedInt = card.value.toInt()
             pontuacao.value = pontuacao.value?.plus(parsedInt)
-        } else if (card.uppercase().equals("A")) {
+        } else if (card.value.uppercase().equals("A")) {
             pontuacao.value = pontuacao.value?.plus(1)
         } else {
             pontuacao.value = pontuacao.value?.plus(10)
         }
-        Log.d("###############", "pontuacao1")
-        Log.d("###############", pontuacao.value.toString())
-
-
-
     }
 }

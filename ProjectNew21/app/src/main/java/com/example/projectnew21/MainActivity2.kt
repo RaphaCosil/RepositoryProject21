@@ -37,7 +37,7 @@ class MainActivity2 : ComponentActivity() {
         Log.d("###############", "Return DeckId1")
         viewModel.deckLiveData.observe(this) {
 
-            Toast.makeText(this, it.deckId, Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, it.deckId, Toast.LENGTH_SHORT).show()
 
         }
         binding.btDraw.setOnClickListener {
@@ -45,13 +45,11 @@ class MainActivity2 : ComponentActivity() {
         }
 
         viewModel.pontuacao.observe(this) {
-            pontuacao:Int? ->
-            pontuacao?.let {
-                binding.txtPontuacao.text="Total:"+pontuacao.toString()
-                Toast.makeText(this, pontuacao.toString()+"teste", Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(baseContext, it, Toast.LENGTH_SHORT).show()
+        }
+
+
         }
     }
-}
 
 
