@@ -11,7 +11,7 @@ import org.koin.core.component.getScopeId
 class GameViewModel(private val deckUseCase: DeckUseCase): ViewModel() {
     var deckLiveData= MutableLiveData<ApiDeck>()
     var cardListLiveData= MutableLiveData<ApiCardList>()
-    var pontuacao = MutableLiveData<Int>()
+    var pontuacao = MutableLiveData<Int>(0)
 
     fun newDeck() {
         deckUseCase.newDeck { deckResponse->

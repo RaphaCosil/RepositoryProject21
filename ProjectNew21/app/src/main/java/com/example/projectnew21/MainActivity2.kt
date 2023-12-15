@@ -45,7 +45,8 @@ class MainActivity2 : ComponentActivity() {
         }
 
         viewModel.pontuacao.observe(this) {
-            Toast.makeText(baseContext, it, Toast.LENGTH_SHORT).show()
+            binding.txtPontuacao.text = "Total:"+ viewModel.pontuacao.value.toString()
+
         }
 
 
