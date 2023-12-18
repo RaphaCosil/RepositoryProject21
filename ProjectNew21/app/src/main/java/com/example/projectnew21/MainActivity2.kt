@@ -37,7 +37,7 @@ class MainActivity2 : ComponentActivity() {
         setContentView(binding.root)
         val recyclerView = binding.recyclerView
 
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter = adapter
 
         Log.d("###############", "hello world")
