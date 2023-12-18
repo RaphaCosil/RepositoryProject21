@@ -6,8 +6,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectnew21.dataClasses.ApiCard
 import com.example.projectnew21.dataClasses.ApiDeck
+import com.example.projectnew21.dataClasses.RecyclerViewAdapter
 import com.example.projectnew21.databinding.ActivityMain2Binding
 import com.example.projectnew21.databinding.ActivityMainBinding
 import com.example.projectnew21.repository.DeckCardRepositoryImpl
@@ -24,6 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity2 : ComponentActivity() {
     private lateinit var binding: ActivityMain2Binding
     var deck: ApiDeck? = null
+    private var adapter: RecyclerViewAdapter?=null
     private val viewModel: GameViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,10 @@ class MainActivity2 : ComponentActivity() {
         val lista = mutableListOf<Int>()
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        val recyclerView = binding.recyclerView
+
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
         Log.d("###############", "hello world")
         Log.d("###############", "Return DeckId1")
@@ -47,6 +54,12 @@ class MainActivity2 : ComponentActivity() {
         viewModel.pontuacao.observe(this) {
             binding.txtPontuacao.text = "Total:"+ viewModel.pontuacao.value.toString()
 
+        }
+
+        viewModel.cardListLiveData.observe(this){
+            adapter = RecyclerViewAdapter(this, it)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = layoutManager
         }
 
 
