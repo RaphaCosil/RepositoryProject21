@@ -2,4 +2,6 @@
 <resources>
 
     <style name="Theme.ProjectNew21" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Modal" parent="android:ThemeOverlay.Material.ActionBar" />
+
 </resources>

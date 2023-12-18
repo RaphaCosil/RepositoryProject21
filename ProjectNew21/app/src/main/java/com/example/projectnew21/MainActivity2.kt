@@ -48,12 +48,18 @@ class MainActivity2 : ComponentActivity() {
 
         }
         binding.btDraw.setOnClickListener {
-            viewModel.drawCard()
+                viewModel.drawCard()
         }
 
         viewModel.pontuacao.observe(this) {
             binding.txtPontuacao.text = "Total:"+ viewModel.pontuacao.value.toString()
 
+            if(viewModel.pontuacao.value!! > 21){
+                Tela3()
+            }
+            else if(viewModel.pontuacao.value!! == 21){
+                Tela4()
+            }
         }
 
         viewModel.cardListLiveData.observe(this){
@@ -64,6 +70,16 @@ class MainActivity2 : ComponentActivity() {
 
 
         }
+
+    private fun Tela3() {
+        val tela3 = Intent(this, MainActivity3::class.java)
+        startActivity(tela3)
+    }
+
+    private fun Tela4() {
+        val tela4 = Intent(this, MainActivity4::class.java)
+        startActivity(tela4)
+    }
     }
 
 

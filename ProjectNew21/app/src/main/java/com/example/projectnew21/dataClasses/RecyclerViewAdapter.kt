@@ -1,9 +1,11 @@
 package com.example.projectnew21.dataClasses
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectnew21.R
@@ -25,7 +27,12 @@ class RecyclerViewAdapter(private val context: Context, private val itemList: Li
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-        holder.textViewTitle.text = item.code
+        val resource = buscaImagem(item.code)
+        resource?.let {
+            holder.imageViewTitle.setImageDrawable(it)
+        }
+//        val resource = "R.drawable.card"+item.code.lowercase()
+//        holder.imageViewTitle.setImageDrawable(resource)
         // Configure outros elementos conforme necessário
     }
 
@@ -34,7 +41,12 @@ class RecyclerViewAdapter(private val context: Context, private val itemList: Li
     }
 
     inner class ViewHolder(itemView: LayoutItemBinding) : RecyclerView.ViewHolder(itemView.root) {
-        val textViewTitle: TextView = itemView.txtCard
+        val imageViewTitle: ImageView = itemView.imgCard
         // Adicione outros elementos conforme necessário
+    }
+
+    fun buscaImagem(code:String): Drawable? {
+        val resource = context.resources.getIdentifier("card"+code.lowercase(),"drawable",context.packageName)
+        return context.resources.getDrawable(resource)
     }
 }
