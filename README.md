@@ -5,4 +5,4 @@ Use the https://www.deckofcardsapi.com/ API that generates the deck and allows y
 
 É um jogo simples de BlackJack criado com o objetivo de entender conceitos do desenvolvimento mobile em Android.
 Contém assincronicidade com o uso de Coroutinas em Kotlin e uso do MVVM.
-Usa a API https://www.deckofcardsapi.com/" que gera o baralho e possibilita a compra das cartas.
+Usa a API https://www.deckofcardsapi.com/ que gera o baralho e possibilita a compra das cartas.
